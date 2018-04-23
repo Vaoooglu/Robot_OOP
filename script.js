@@ -116,6 +116,7 @@ console.log(newUser);
   newRobot.back();
   newRobot.showRes();
 */
+/*
 var MyQuery = function(selector){
   this.elem=document.querySelector(selector);
   var hlcolor="yellow";
@@ -145,3 +146,66 @@ var myElem1=new MyQuery(".second");
 myElem1.setHeight("150");
 myElem1.setHlcolor("green");
 myElem1.heightLight();
+*/
+ var robotMap = [
+   [0,0,1,1],
+   [1,0,1,0],
+   [1,0,1,0],
+   [1,0,0,0]
+ ];
+console.log(robotMap);
+
+for(var i = 0; i < robotMap.length; i++){
+  var row=$("<div>").addClass("table");
+    for(var j = 0; j < robotMap[i].length; j++){
+      if (robotMap[i][j]==0) {
+      row.append($("<span>").addClass('black'));
+    } else
+      row.append($("<span>").addClass('yellow'));
+    }
+
+      $(".container").append(row);
+}
+var div=$("<div>").addClass('clearfix');
+$(".container").append(div);
+
+var MyQuery = function (selector){
+  this.element=document.getElementById(selector);
+  //this.left=0;
+  this.right=0;
+  this.top=0;
+//  this.bottom=0;
+}
+MyQuery.prototype.setLeft=function(){
+  var coords=this.element.getBoundingClientRect();
+  console.log(coords);
+  this.left+=coords.width;
+  this.element.style.left=this.left+"0px";
+  return this.left;
+}
+MyQuery.prototype.setRight=function(rightMove){
+  this.right++;
+  this.element.style.right=this.right+"0px";
+  return this.right;
+}
+MyQuery.prototype.setTop=function(topMove){
+  this.top++;
+  this.element.style.top=this.top+"0px";
+  return this.top;
+}
+MyQuery.prototype.setBottom=function(){
+  this.top--;
+  this.element.style.top=this.top-"0px";
+  return this.top;
+}
+var Robot=new MyQuery("robot");
+console.log(Robot);
+Robot.setRight();
+Robot.setRight();
+Robot.setRight();
+Robot.setBottom();
+Robot.setTop();
+Robot.setTop();
+Robot.setTop();
+Robot.setTop();
+console.log(Robot);
